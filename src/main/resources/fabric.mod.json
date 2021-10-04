@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "lastlife",
+  "version": "${version}",
+  "name": "Lastlife",
+  "description": "A mod similar to the popular YouTube series 'Last Life'",
+  "authors": [
+    "jkcoxson"
+  ],
+  "contact": {
+    "website": "jkcoxson.com"
+  },
+  "license": "MIT",
+  "icon": "assets/lastlife/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.jkcoxson.lastlife.client.LastlifeClient"
+    ],
+    "main": [
+      "com.jkcoxson.lastlife.Lastlife"
+    ]
+  },
+  "mixins": [
+    "lastlife.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.7",
+    "fabric": "*",
+    "minecraft": "1.17.1"
+  }
+}
