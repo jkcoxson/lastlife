@@ -83,6 +83,15 @@ public class Lastlife implements ModInitializer {
                         newBoogieman();
                         return Command.SINGLE_SUCCESS;
                     }));
+            // Reload config file
+            dispatcher.register(CommandManager.literal("reload-lastlife")
+                    .requires(source -> source.hasPermissionLevel(4))
+                    .executes(ctx -> {
+                        config = new Config();
+                        playerDatabase = new Players();
+                        return Command.SINGLE_SUCCESS;
+                    })
+            );
             // Command to gift lives to other players
             if(config.giftLives) {
                 dispatcher.register(CommandManager.literal("gift-life")
@@ -153,7 +162,10 @@ public class Lastlife implements ModInitializer {
      * @param title
      */
     public static void silentSubTitle(ServerPlayerEntity serverPlayerEntity, String title) {
-        if (serverPlayerEntity == null) return;
+        if (serverPlayerEntity == null) {
+            System.out.println("uh oh bad idk");
+            return;
+        }
         Function<Text, Packet<?>> constructor = SubtitleS2CPacket::new;
         ServerCommandSource source = serverReference.getValue().getCommandSource();
         Text text = Text.Serializer.fromJson(title);
@@ -201,7 +213,7 @@ public class Lastlife implements ModInitializer {
         for (Integer i = 0; i < serverReference.getValue().getTickTime() * ThreadLocalRandom.current().nextInt(); i++){
             ThreadLocalRandom.current().nextInt();
         }
-        Integer index = ThreadLocalRandom.current().nextInt(0, uuidList.size() - 1);
+        Integer index = ThreadLocalRandom.current().nextInt(0, uuidList.size());
 
         playerDatabase.boogieman = uuidList.get(index);
         playerDatabase.save();
