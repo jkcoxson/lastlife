@@ -33,7 +33,7 @@ public class join {
                 // Play fancy animation I guess
                 new Thread(() -> {
                     // Flush the random int
-                    for (Integer i = 0; i < serverPlayerEntity.getServerWorld().getTime() * ThreadLocalRandom.current().nextInt(); i++){
+                    for (Integer i = 0; i < serverPlayerEntity.getWorld().getTime() * ThreadLocalRandom.current().nextInt(); i++){
                         ThreadLocalRandom.current().nextInt();
                     }
                     Integer randomNum = ThreadLocalRandom.current().nextInt(Lastlife.config.minimumLives, Lastlife.config.maximumLives + 1);
